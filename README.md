@@ -80,6 +80,20 @@ Scenario: Access the Console offical site
       Then Click on console offical site button
 ```
 ```C# 
+        private IWebDriver driver;
+        private Homepage homepage;
+
+        [Scope(Feature = "MhwMainPage")]
+        [BeforeScenario]
+        public void BeforeScenario()
+        {
+            //start the browsers
+            driver = new ChromeDriver();
+            //maximuize the window screen size
+            driver.Manage().Window.Maximize();
+            homepage = new Homepage(driver);
+        }
+
         [Given(@"I am on the homepage")]
         public void GivenIAmOnTheHomepage()
         {
@@ -108,6 +122,14 @@ Scenario: Access the Console offical site
             homepage.OfficalSite();
             string expectedLink = "http://www.monsterhunterworld.com/uk/";
             Assert.AreEqual(expectedLink, driver.Url);
+        }
+
+        [Scope(Feature = "MhwMainPage")]
+        [AfterScenario]
+        public void AfterScenario()
+        {
+            //end the browsers
+            driver.Close();
         }
 ```
 
