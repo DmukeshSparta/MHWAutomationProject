@@ -14,9 +14,7 @@ Testing the Website: https://www.monsterhunterworld.com/
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ## General info
-The project was based on website automation, as group we spilt the into 3 different group with each objectives: navigation, purchasing and account). our Group was to suppose to work on purchasing objectives. 
-
-Group: Dipak Mukesh, Brandon Stephens, Cosmin Balosache, Nazir Ahmed and Norberta Balaisyte
+The project was based on website automation. the aim of the project to mimic how person uses web browser to automate repetetive scenarios through Specflow with gherkin and selenium. 
 
 ## Prerequisites
 What things you need to install the software and how to install them
@@ -69,16 +67,53 @@ Step by Step for running the tests:
 * Click on the run all button to run all the tests or run selected button to specific selected tests in the Test Explorer
 * Below show the example of tests. 
 
+Example of using SpecFlow with Gherkin and Selenium
+```SpecFlow 
+Feature: MhwMainPage
+       As a user I want select different langauge 
+       to access the offical site
+
+Scenario: Access the Console offical site
+      Given I am on the homepage 
+      And I click on messagebox 
+      When I have select the UK language 
+      Then Click on console offical site button
+```
+```C# 
+        [Given(@"I am on the homepage")]
+        public void GivenIAmOnTheHomepage()
+        {
+            homepage.GoToPage();
+            string expectedLink = "https://www.monsterhunterworld.com/";
+            Assert.AreEqual(expectedLink, driver.Url);
+        }
+
+        [Given(@"I click on messagebox")]
+        public void GivenIClickOnMessagebox()
+        {
+            homepage.MessageBox();
+        }
+
+        [When(@"I have select the UK language")]
+        public void WhenIHaveSelectTheLanguage()
+        {
+            homepage.SelectLanguage();
+            string expectedText = "English(UK)";
+            Assert.AreEqual(expectedText, driver.FindElement(By.XPath("//*[@id='language']/select/option[3]")).Text);
+        }
+        
+        [Then(@"Click on console offical site button")]
+        public void ThenIHavenChosenConsoleOfficalSite()
+        {
+            homepage.OfficalSite();
+            string expectedLink = "http://www.monsterhunterworld.com/uk/";
+            Assert.AreEqual(expectedLink, driver.Url);
+        }
+```
+
+Test Result
 ![Tests]( "Example of test result")
 
-```C#
-Example of Test written
-
-```
-
-```SpecFlow
-
-```
 
 ## Implementation
 ```
