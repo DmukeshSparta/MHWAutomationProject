@@ -80,6 +80,7 @@ Scenario: Access the Console offical site
       Then Click on console offical site button
 ```
 ```C# 
+        //defines the interface through which the user controls the browsers
         private IWebDriver driver;
         private Homepage homepage;
 
