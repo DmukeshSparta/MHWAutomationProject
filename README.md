@@ -1,4 +1,4 @@
-# Engineeering 40 Automation Project
+# Webiste Automation Project
 Testing the Website: https://www.monsterhunterworld.com/
 
 ## Table of contents
